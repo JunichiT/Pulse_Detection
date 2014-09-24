@@ -40,7 +40,7 @@ int E1 = 4;
 int M1 = 5;
 int E2 = 7;                         
 int M2 = 6; 
-
+int i = 0;
 
 // these variables are volatile because they are used during the interrupt service routine!
 volatile int BPM;                   // used to hold the pulse rate
@@ -77,9 +77,9 @@ void loop(){
         QS = false;                      // reset the Quantified Self flag for next time 
      }
   
-  delay(1000);
+  delay(30);
   ledFadeToBeat();
-  
+  Serial.println(i);
   i++;                            //  take a break
 }
 
@@ -109,9 +109,6 @@ void test(int n) {
     value = 255;
     break;
     
-    default:
-    value = 255;
-    break;
   }
   
   digitalWrite(E1,HIGH);   
@@ -124,7 +121,7 @@ void test(int n) {
 void vibration(int value) {
   
   if(value >= 150 || value <= 50) {
-    value = 130;
+    value = 150;
   }
   else {
      value = 255;
